@@ -14,7 +14,7 @@ interface TextProps {
     children: React.ReactNode;
 }
 
-const NormalText: FunctionComponent<TextProps> = (props) => {
+const LargeText: FunctionComponent<TextProps> = (props) => {
     return (
         <TextView>
             {props.children}
@@ -22,4 +22,4 @@ const NormalText: FunctionComponent<TextProps> = (props) => {
     )
 }
 
-export default NormalText;
+export default LargeText;
