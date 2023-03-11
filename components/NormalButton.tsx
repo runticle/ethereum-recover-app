@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react'
 import { GestureResponderEvent } from 'react-native/types';
 import styled from "styled-components/native";
+import { Colours } from './Globals';
 
 import NormalText from './Text/NormalText';
 
 const ButtonView = styled.TouchableOpacity`
     align-items: center;
-    background-color: red;
+    background-color: ${Colours.white};
     width: 100%;
     padding: 20px;
     border-radius: 20px;
