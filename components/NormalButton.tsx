@@ -19,7 +19,7 @@ interface ButtonProps {
 }
 
 const NormalButton: FunctionComponent<ButtonProps> = (props) => {
-    return <ButtonView>
+    return <ButtonView onPress={props.onPress}>
         <NormalText>
             {props.children}
         </NormalText>
