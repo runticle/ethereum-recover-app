@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import React, { FunctionComponent, useMemo, useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import React, { FunctionComponent, useState } from "react";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Colours } from "./Globals";
 import LargeText from "./Text/LargeText";
@@ -12,15 +12,17 @@ interface RevealerProps {
 }
 
 const RevealerView = styled.View`
-    align-items: center;
     padding-bottom: 20px;
+    width: 100%;
 `
 
 const HeadingContainer = styled.View`
-    color: white;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    color: white;
+    padding-bottom: 10px;
 `
 
 const Revealer:FunctionComponent<RevealerProps> = ({

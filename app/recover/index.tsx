@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 
 import { Alert } from 'react-native';
-import { TextInput } from 'react-native/types';
 
 import styled from 'styled-components/native';
 import { Container, MNEMONIC_LENGTH } from '../../components/Globals';
@@ -17,7 +16,7 @@ import SubmitMnemonic from '../../components/Buttons/SubmitMnemonic';
 import NormalText from '../../components/Text/NormalText';
 
 const RecoverView = styled(Container)`
-  justify-content: space-between;
+
 `
 
 const RecoverScreen: FunctionComponent = () => {
@@ -72,6 +71,9 @@ const RecoverScreen: FunctionComponent = () => {
   return (  
       <RecoverView>
         <Stack.Screen options={{title: 'Recovery'}} />
+        <NormalText>
+          Enter your 12 word recovery phrase. Be sure to enter the words in the correct order.
+        </NormalText>
         <MnemonicList />
         { 
           !inputComplete ? <NormalTextInput 
@@ -81,7 +83,7 @@ const RecoverScreen: FunctionComponent = () => {
           editable={!inputComplete}
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Enter word"
+          placeholder="Tap submit or space between each word"
           blurOnSubmit={false}
           onSubmitEditing={(event) => {
             handleInput(event.nativeEvent.text, true)

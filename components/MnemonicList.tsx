@@ -1,8 +1,8 @@
-import { FunctionComponent, useReducer } from 'react';
+import { FunctionComponent } from 'react';
 
 import styled from 'styled-components/native';
 import { useWallet } from '../context/WalletContext';
-import walletReducer, { initialState } from '../reducers/walletReducer';
+import { MNEMONIC_LENGTH } from './Globals';
 
 import RecoveryWord from './RecoveryWord';
 import LargeText from './Text/LargeText';
@@ -22,7 +22,7 @@ const MnemonicList: FunctionComponent<MnemonicListProps> = () => {
 
   return (
     <>
-      <LargeText>Your recovery phrase</LargeText>
+      <LargeText>{`${MNEMONIC_LENGTH - state.mnemonic.length } word${MNEMONIC_LENGTH - state.mnemonic.length === 1 ? '' : 's'} left`}</LargeText>
       <MnemonicListView
         data={mnemonic}
         renderItem={({ item, index }) => <RecoveryWord key={index} index={index}>{item}</RecoveryWord>}
