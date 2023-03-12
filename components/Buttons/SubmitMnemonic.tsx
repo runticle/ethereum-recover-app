@@ -1,4 +1,3 @@
-import { Wallet } from 'ethers';
 import React, { FunctionComponent } from 'react'
 import { useWallet } from '../../context/WalletContext';
 import types from '../../reducers/types';
@@ -13,20 +12,21 @@ const SubmitMnemonic: FunctionComponent = (props) => {
     const { mnemonic } = state;
     
     async function onSubmit() {
+        dispatch({ type: types.RECOVER_WALLET_START, payload: null })
+
         const cleanedMnemonic = cleanMnemonic(mnemonic)
     
-        if(cleanedMnemonic.length < 12) {
-          // ! error
+        if(cleanedMnemonic.length !== 12) {
+          dispatch({type: types.RECOVER_WALLET_ERROR, payload: `Expected 12-word mnemonic. Recieved ${cleanedMnemonic.length} words. Please check your input.`})
         }
     
         const mnemonicString = mnemonic.join(' ')
     
         let address: string;
-    
-        try { 
-            dispatch({ type: types.RECOVER_WALLET_START, payload: null })
-            
-            setTimeout(async () => {
+        
+        // ! getWalletFromMnemonic takes a long time to execute. Using setTimout, 0 to avoid the UI freezing on the main thread.
+        setTimeout(async () => {
+            try { 
                 const wallet = getWalletFromMnemonic(mnemonicString)
 
                 address = wallet.address;
@@ -35,12 +35,12 @@ const SubmitMnemonic: FunctionComponent = (props) => {
                 await saveSecurely(address, privateKey)
 
                 dispatch({ type: types.RECOVER_WALLET_SUCCESS, payload: address })
+
+                } catch(error) {
+                    dispatch({ type: types.RECOVER_WALLET_ERROR, payload: `Failed to recover wallet from provided recovery phrase. Please check your input and try again. Error: ${error.message}` })
+                }
             }, 0)
-        } catch(error) {
-            console.error(error)
-            dispatch({ type: types.RECOVER_WALLET_ERROR, payload: error.message })
-        }
-      }
+        } 
 
       
     return <BaseButton onPress={onSubmit} {...props}>
