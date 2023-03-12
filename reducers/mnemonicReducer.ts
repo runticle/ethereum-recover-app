@@ -1,4 +1,3 @@
-import { Wallet } from "ethers";
 import types from "./types";
 
 export const initialState = {
@@ -21,7 +20,7 @@ export type MnemonicState = {
 
 export type MnemonicAction = {
     type: string;
-    payload: string | number | Wallet;
+    payload: string | number;
 }
 
 function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
