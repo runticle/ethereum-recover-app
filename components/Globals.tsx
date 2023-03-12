@@ -9,6 +9,7 @@ const Colours = {
 const Container = styled.View`
     flex: 1;
     background-color: ${Colours.black};
+    padding: 20px;
 
     padding-top: 50px;
 `
