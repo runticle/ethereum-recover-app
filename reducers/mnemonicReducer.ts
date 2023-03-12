@@ -5,7 +5,8 @@ export const initialState = {
     loading: false,
     error: null,
     wallet: {
-        address: null
+        address: null,
+        balance: null,
     },
 }
 
@@ -14,7 +15,8 @@ export type MnemonicState = {
     loading: boolean;
     error: string;
     wallet: {
-        address: string;
+        address: string | null;
+        balance: string | null;
     };
 }
 
@@ -46,7 +48,9 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
                 loading: true,
                 error: false,
                 wallet: {
-                    address: null
+                    ...state.wallet,
+                    address: null,
+                    balance: null,
                 },
             }
         case types.RECOVER_WALLET_ERROR:
@@ -55,7 +59,9 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
                 loading: false,
                 error: action.payload,
                 wallet: {
-                    address: null
+                    ...state.wallet,
+                    address: null,
+                    balance: null,
                 },
             }
         case types.RECOVER_WALLET_SUCCESS:
@@ -66,6 +72,38 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
                 wallet: {
                     ...state.wallet,
                     address: action.payload,
+                } 
+            }
+
+        case types.FETCH_BALANCE_START:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+                wallet: {
+                    ...state.wallet,
+                    balance: null,
+                },
+            }
+        case types.FETCH_BALANCE_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+                wallet: {
+                    ...state.wallet,
+                    address: null,
+                    balance: null,
+                },
+            }
+        case types.FETCH_BALANCE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                wallet: {
+                    ...state.wallet,
+                    balance: action.payload,
                 } 
             }
         default:
