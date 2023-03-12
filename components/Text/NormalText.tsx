@@ -16,7 +16,9 @@ interface TextProps {
 
 const NormalText: FunctionComponent<TextProps> = (props) => {
     return (
-        <TextView>
+        <TextView
+            style={props.textStyle}
+        >
             {props.children}
         </TextView>
     )
