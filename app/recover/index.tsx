@@ -6,7 +6,7 @@ import { TextInput } from 'react-native/types';
 import styled from 'styled-components/native';
 import { Container, MNEMONIC_LENGTH } from '../../components/Globals';
 
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useNavigation, useRouter } from 'expo-router';
 import NormalTextInput from '../../components/Text/NormalTextInput';
 import MnemonicList from '../../components/MnemonicList';
 
@@ -23,6 +23,7 @@ const RecoverView = styled(Container)`
 const RecoverScreen: FunctionComponent = () => {
   const [currentInput, setCurrentInput ] = useState('')
   const router = useRouter()
+  const navigation = useNavigation()
 
   const { state, dispatch } = useWallet()
 
@@ -58,7 +59,13 @@ const RecoverScreen: FunctionComponent = () => {
     if(state.wallet?.address) {
       router.replace('/wallet')
     }
-  }, [state.wallet?.address, state.error])
+
+    const unsubscribe = navigation.addListener("beforeRemove", () => {
+      dispatch({ type: types.RESET });
+    });
+
+    return unsubscribe;
+  }, [state.wallet?.address, state.error, navigation])
 
   if(state.loading) return <NormalText>Loading...</NormalText>
 
@@ -68,7 +75,7 @@ const RecoverScreen: FunctionComponent = () => {
         <MnemonicList />
         { 
           !inputComplete ? <NormalTextInput 
-          title="Enter your mnemonic"
+          title="Enter next word"
           value={currentInput} 
           onChangeText={(value)=>handleInput(value)} 
           editable={!inputComplete}

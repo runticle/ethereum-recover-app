@@ -22,7 +22,7 @@ export type WalletState = {
 
 export type WalletAction = {
     type: string;
-    payload: string | number;
+    payload?: string | number;
 }
 
 function walletReducer(state: WalletState, action: WalletAction) {
@@ -106,6 +106,9 @@ function walletReducer(state: WalletState, action: WalletAction) {
                     balance: action.payload,
                 } 
             }
+
+        case types.RESET:
+            return initialState;
         default:
             return state;
     }
