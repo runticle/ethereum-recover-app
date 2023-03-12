@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import { Button, GestureResponderEvent } from 'react-native/types';
+import { GestureResponderEvent, TouchableOpacity } from 'react-native/types';
 import styled from "styled-components/native";
-import { Colours } from './Globals';
+import { Colours } from '../Globals';
 
-import NormalText from './Text/NormalText';
+import NormalText from '../Text/NormalText';
 
 const ButtonView = styled.TouchableOpacity`
     align-items: center;
@@ -14,11 +14,11 @@ const ButtonView = styled.TouchableOpacity`
 `
 
 interface ButtonProps {
-    onPress: ((event: GestureResponderEvent) => void) | undefined;
+    onPress: ((event: GestureResponderEvent) => void);
     children: React.ReactNode;
 }
 
-const NormalButton: FunctionComponent<ButtonProps> = (props) => {
+const BaseButton: FunctionComponent<ButtonProps> = (props) => {
     return <ButtonView onPress={props.onPress} {...props}>
         <NormalText>
             {props.children}
@@ -26,4 +26,4 @@ const NormalButton: FunctionComponent<ButtonProps> = (props) => {
     </ButtonView>
 }
 
-export default NormalButton;
+export default BaseButton;
