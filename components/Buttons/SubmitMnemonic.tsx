@@ -20,7 +20,7 @@ const SubmitMnemonic: FunctionComponent = (props) => {
     
         const mnemonicString = mnemonic.join(' ')
     
-        let address: String;
+        let address: string;
     
         try { 
             dispatch({ type: types.RECOVER_WALLET_START, payload: null })
