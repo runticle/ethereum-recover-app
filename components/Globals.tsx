@@ -9,10 +9,15 @@ const Colours = {
 const Container = styled.View`
     flex: 1;
     background-color: ${Colours.black};
+
+    padding-top: 50px;
 `
+
+const MNEMONIC_LENGTH = 12
 
 
 export {
     Colours,
-    Container
+    Container,
+    MNEMONIC_LENGTH
 }
