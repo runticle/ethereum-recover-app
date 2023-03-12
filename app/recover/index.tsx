@@ -1,9 +1,7 @@
-import React, { FunctionComponent, useReducer, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 
 import styled from 'styled-components/native';
 import { Container, MNEMONIC_LENGTH } from '../../components/Globals';
-import NormalButton from '../../components/NormalButton';
-import LargeText from '../../components/Text/LargeText';
 
 import { Stack, useRouter } from 'expo-router';
 import NormalTextInput from '../../components/Text/NormalTextInput';
@@ -12,15 +10,16 @@ import MnemonicList from '../../components/MnemonicList';
 import types from '../../reducers/types';
 
 import { useMnemonic } from '../../context/MnemonicContext';
+import SubmitMnemonic from '../../components/Buttons/SubmitMnemonic';
+import NormalText from '../../components/Text/NormalText';
 
 const RecoverView = styled(Container)`
   justify-content: space-between;
 `
 
 const RecoverScreen: FunctionComponent = () => {
-  const router = useRouter();
-
   const [currentInput, setCurrentInput ] = useState('')
+  const router = useRouter()
 
   const { state, dispatch } = useMnemonic()
 
@@ -47,22 +46,20 @@ const RecoverScreen: FunctionComponent = () => {
 
   const inputComplete = mnemonic.length === MNEMONIC_LENGTH
 
+  useEffect(()=> {
+    // TODO temp fix
+    // * Look out for the presence of a wallet in our reducer. If we find one, we will head to the wallet screen
+    if(state.wallet?.address) {
+      router.replace('/wallet')
+    }
+  }, [state.wallet?.address])
 
-  async function onSubmit() {
-    // TODO validation
-
-    // TODO use ethers
-
-    // TODO some redux magic for loading state
-  }
+  if(state.loading) return <NormalText>Loading...</NormalText>
 
   return (  
-
       <RecoverView>
         <Stack.Screen options={{title: 'Recovery'}} />
-
         <MnemonicList />
-
         { 
           !inputComplete ? <NormalTextInput 
           title="Enter your mnemonic"
@@ -73,9 +70,7 @@ const RecoverScreen: FunctionComponent = () => {
           autoCorrect={false}
           placeholder="Enter word"
           />
-          : <NormalButton onPress={onSubmit}>
-          Submit
-          </NormalButton>
+          : <SubmitMnemonic />
         }
       
       </RecoverView>
