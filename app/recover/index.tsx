@@ -39,7 +39,7 @@ const RecoverScreen: FunctionComponent = () => {
     
     // User can either press the submit button to add a word
     // or if they press space, we will also add the word.
-    if(submit || lastInput === ' ' && value.trim().length) {
+    if((submit || lastInput === ' ') && value.trim().length) {
       handleAddWord(value)
       setCurrentInput('')
     } else {
