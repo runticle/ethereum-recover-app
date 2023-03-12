@@ -5,14 +5,18 @@ export const initialState = {
     mnemonic: ['example'],
     loading: false,
     error: null,
-    wallet: null,
+    wallet: {
+        address: null
+    },
 }
 
 export type MnemonicState = {
     mnemonic: string[];
     loading: boolean;
     error: string;
-    wallet: Wallet;
+    wallet: {
+        address: string;
+    };
 }
 
 export type MnemonicAction = {
@@ -24,6 +28,7 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
     switch(action.type) {
         case types.ADD_WORD:
             return {
+                ...state,
                 mnemonic: [...state.mnemonic, action.payload]
             }
         case types.REMOVE_WORD:
@@ -31,28 +36,38 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
 
             tmp.splice(Number(action.payload), 1) // force number
 
-            return { mnemonic: tmp }
+            return { 
+                ...state,
+                mnemonic: tmp 
+            }
 
         case types.RECOVER_WALLET_START:
             return {
                 ...state,
                 loading: true,
                 error: false,
-                wallet: null,
+                wallet: {
+                    address: null
+                },
             }
         case types.RECOVER_WALLET_ERROR:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
-                wallet: null,
+                wallet: {
+                    address: null
+                },
             }
         case types.RECOVER_WALLET_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: false,
-                wallet: action.payload,
+                wallet: {
+                    ...state.wallet,
+                    address: action.payload,
+                } 
             }
         default:
             return state;
