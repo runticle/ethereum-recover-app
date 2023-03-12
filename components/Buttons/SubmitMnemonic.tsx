@@ -6,6 +6,8 @@ import { getWalletFromMnemonic } from '../../utils/ethersUtils';
 import { saveSecurely } from '../../utils/secureStoreUtils';
 import BaseButton from './BaseButton';
 
+import { SECURE_STORAGE_KEY } from "@env";
+
 const SubmitMnemonic: FunctionComponent = (props) => {
     const { state, dispatch } = useWallet()
     
@@ -32,7 +34,7 @@ const SubmitMnemonic: FunctionComponent = (props) => {
                 address = wallet.address;
                 const privateKey = wallet.privateKey;
 
-                await saveSecurely(address, privateKey)
+                await saveSecurely(SECURE_STORAGE_KEY, privateKey)
 
                 dispatch({ type: types.RECOVER_WALLET_SUCCESS, payload: address })
 

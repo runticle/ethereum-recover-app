@@ -1,11 +1,13 @@
 import * as SecureStore from 'expo-secure-store';
 
-async function saveSecurely(key: string, value: string) {
+// TODO Create a SecureStore reducer and handle errors
+
+async function saveSecurely(key: string, value: string) : Promise<void> {
     await SecureStore.setItemAsync(key, value)
-    console.log("saved in storage")
+    console.log(key + " saved in storage")
 }
 
-async function getSecuredItem(key: string) {
+async function getSecuredItem(key: string) : Promise<string> {
     let result = await SecureStore.getItemAsync(key);
     if (result) {
         return result
@@ -14,7 +16,17 @@ async function getSecuredItem(key: string) {
     }
 }
 
+async function deleteSecuredItem(key: string) : Promise<void> {
+    try {
+        await SecureStore.deleteItemAsync(key)
+        console.log("Deleted " + key + " from secure store")
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export {
     saveSecurely,
     getSecuredItem,
+    deleteSecuredItem,
 }

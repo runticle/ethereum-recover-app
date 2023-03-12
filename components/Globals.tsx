@@ -17,7 +17,6 @@ const Container = styled.View`
 
 const MNEMONIC_LENGTH = 12
 
-
 export {
     Colours,
     Container,
