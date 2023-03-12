@@ -1,8 +1,8 @@
 import { FunctionComponent, useReducer } from 'react';
 
 import styled from 'styled-components/native';
-import { useMnemonic } from '../context/MnemonicContext';
-import mnemonicReducer, { initialState } from '../reducers/mnemonicReducer';
+import { useWallet } from '../context/WalletContext';
+import walletReducer, { initialState } from '../reducers/walletReducer';
 
 import RecoveryWord from './RecoveryWord';
 import LargeText from './Text/LargeText';
@@ -16,7 +16,7 @@ interface MnemonicListProps {
 }
 
 const MnemonicList: FunctionComponent<MnemonicListProps> = () => {   
-  const { state } = useMnemonic();
+  const { state } = useWallet();
 
   const { mnemonic } = state;
 

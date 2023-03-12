@@ -10,7 +10,7 @@ export const initialState = {
     },
 }
 
-export type MnemonicState = {
+export type WalletState = {
     mnemonic: string[];
     loading: boolean;
     error: string;
@@ -20,12 +20,12 @@ export type MnemonicState = {
     };
 }
 
-export type MnemonicAction = {
+export type WalletAction = {
     type: string;
     payload: string | number;
 }
 
-function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
+function walletReducer(state: WalletState, action: WalletAction) {
     switch(action.type) {
         case types.ADD_WORD:
             return {
@@ -111,4 +111,4 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
     }
 }
 
-export default mnemonicReducer
+export default walletReducer

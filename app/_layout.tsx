@@ -1,10 +1,10 @@
 import { Stack } from "expo-router";
-import MnemonicProvider from "../context/MnemonicContext";
+import WalletProvider from "../context/WalletContext";
 
 export default function Layout() {
 return (
-    <MnemonicProvider>
+    <WalletProvider>
         <Stack />
-    </MnemonicProvider>
+    </WalletProvider>
 )
 }

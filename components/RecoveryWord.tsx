@@ -4,9 +4,9 @@ import styled from "styled-components/native";
 import { Colours } from "./Globals";
 import NormalText from "./Text/NormalText";
 
-import mnemonicReducer, { initialState } from '../reducers/mnemonicReducer';
+import walletReducer, { initialState } from '../reducers/walletReducer';
 import types from '../reducers/types';
-import { useMnemonic } from "../context/MnemonicContext";
+import { useWallet } from "../context/WalletContext";
 
 const RecoveryWordView = styled.View`
     min-width: 31%;
@@ -29,7 +29,7 @@ interface RecoveryWordProps {
 }
 
 const RecoveryWord: FunctionComponent<RecoveryWordProps> = (props) => {
-    const { dispatch } = useMnemonic();
+    const { dispatch } = useWallet();
 
     function handleRemoveWord() {
       dispatch({ type: types.REMOVE_WORD, payload: props.index });

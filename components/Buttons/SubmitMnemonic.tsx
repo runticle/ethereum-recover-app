@@ -1,6 +1,6 @@
 import { Wallet } from 'ethers';
 import React, { FunctionComponent } from 'react'
-import { useMnemonic } from '../../context/MnemonicContext';
+import { useWallet } from '../../context/WalletContext';
 import types from '../../reducers/types';
 import cleanMnemonic from '../../utils/cleanMnemonic';
 import { getWalletFromMnemonic } from '../../utils/ethersUtils';
@@ -8,7 +8,7 @@ import { saveSecurely } from '../../utils/secureStoreUtils';
 import BaseButton from './BaseButton';
 
 const SubmitMnemonic: FunctionComponent = (props) => {
-    const { state, dispatch } = useMnemonic()
+    const { state, dispatch } = useWallet()
     
     const { mnemonic } = state;
     

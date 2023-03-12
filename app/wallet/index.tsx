@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { Container } from '../../components/Globals';
 
 import { Stack } from 'expo-router';
-import { useMnemonic } from '../../context/MnemonicContext';
+import { useWallet } from '../../context/WalletContext';
 import { getSecuredItem } from '../../utils/secureStoreUtils';
 import Revealer from '../../components/Revealer';
 import { bigNumInEth, getBalanceFromWallet } from '../../utils/ethersUtils';
@@ -16,7 +16,7 @@ const WalletView = styled(Container)`
 `
 
 const WalletScreen: FunctionComponent = () => {
-  const { state, dispatch } = useMnemonic()
+  const { state, dispatch } = useWallet()
 
   const [privateKey, setPrivateKey] = useState('')
   const [balance, setBalance] = useState('')

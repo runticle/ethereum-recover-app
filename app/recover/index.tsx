@@ -9,7 +9,7 @@ import MnemonicList from '../../components/MnemonicList';
 
 import types from '../../reducers/types';
 
-import { useMnemonic } from '../../context/MnemonicContext';
+import { useWallet } from '../../context/WalletContext';
 import SubmitMnemonic from '../../components/Buttons/SubmitMnemonic';
 import NormalText from '../../components/Text/NormalText';
 
@@ -21,7 +21,7 @@ const RecoverScreen: FunctionComponent = () => {
   const [currentInput, setCurrentInput ] = useState('')
   const router = useRouter()
 
-  const { state, dispatch } = useMnemonic()
+  const { state, dispatch } = useWallet()
 
   const { mnemonic } = state;
 
