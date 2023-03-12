@@ -5,14 +5,14 @@ import { useMnemonic } from '../context/MnemonicContext';
 import mnemonicReducer, { initialState } from '../reducers/mnemonicReducer';
 
 import RecoveryWord from './RecoveryWord';
+import LargeText from './Text/LargeText';
 
 const MnemonicListView = styled.FlatList`
-    
+    margin-top: 10px;
 `
 
 interface MnemonicListProps {
-    // mnemonic: string[];
-    // handleDelete: (index: number) => void
+  
 }
 
 const MnemonicList: FunctionComponent<MnemonicListProps> = () => {   
@@ -20,12 +20,15 @@ const MnemonicList: FunctionComponent<MnemonicListProps> = () => {
 
   const { mnemonic } = state;
 
-  return (  
+  return (
+    <>
+      <LargeText>Your recovery phrase</LargeText>
       <MnemonicListView
         data={mnemonic}
         renderItem={({ item, index }) => <RecoveryWord key={index} index={index}>{item}</RecoveryWord>}
         numColumns={3}
       />
+    </>
   );
 }
 

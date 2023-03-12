@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import { Colours } from '../Globals';
 
 const TextView = styled.Text`
-    font-size: 48px;
+    font-size: 30px;
     color: ${Colours.orange};
 `
 

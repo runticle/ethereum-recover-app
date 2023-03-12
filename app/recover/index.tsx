@@ -45,29 +45,39 @@ const RecoverScreen: FunctionComponent = () => {
     }
   }
 
+  const inputComplete = mnemonic.length === MNEMONIC_LENGTH
+
+
+  async function onSubmit() {
+    // TODO validation
+
+    // TODO use ethers
+
+    // TODO some redux magic for loading state
+  }
+
   return (  
 
       <RecoverView>
-        <Stack.Screen options={{title: 'Recover'}} />
-        <LargeText>
-          Recovery
-        </LargeText>
+        <Stack.Screen options={{title: 'Recovery'}} />
 
         <MnemonicList />
 
-        <NormalTextInput 
+        { 
+          !inputComplete ? <NormalTextInput 
+          title="Enter your mnemonic"
           value={currentInput} 
           onChangeText={(value)=>handleInput(value)} 
-          editable={mnemonic.length < MNEMONIC_LENGTH}
+          editable={!inputComplete}
           autoCapitalize="none"
           autoCorrect={false}
+          placeholder="Enter word"
           />
-        
-        <NormalButton onPress={() => {
-          router.replace('/')
-        }}>
-          Back
-        </NormalButton>
+          : <NormalButton onPress={onSubmit}>
+          Submit
+          </NormalButton>
+        }
+      
       </RecoverView>
   );
 }

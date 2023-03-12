@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { GestureResponderEvent } from 'react-native/types';
+import { Button, GestureResponderEvent } from 'react-native/types';
 import styled from "styled-components/native";
 import { Colours } from './Globals';
 
@@ -19,7 +19,7 @@ interface ButtonProps {
 }
 
 const NormalButton: FunctionComponent<ButtonProps> = (props) => {
-    return <ButtonView onPress={props.onPress}>
+    return <ButtonView onPress={props.onPress} {...props}>
         <NormalText>
             {props.children}
         </NormalText>
