@@ -1,16 +1,23 @@
+import { Wallet } from "ethers";
 import types from "./types";
 
 export const initialState = {
-    mnemonic: ['example']
+    mnemonic: ['example'],
+    loading: false,
+    error: null,
+    wallet: null,
 }
 
 export type MnemonicState = {
     mnemonic: string[];
+    loading: boolean;
+    error: string;
+    wallet: Wallet;
 }
 
 export type MnemonicAction = {
     type: string;
-    payload: string | number;
+    payload: string | number | Wallet;
 }
 
 function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
@@ -25,6 +32,28 @@ function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {
             tmp.splice(Number(action.payload), 1) // force number
 
             return { mnemonic: tmp }
+
+        case types.RECOVER_WALLET_START:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+                wallet: null,
+            }
+        case types.RECOVER_WALLET_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+                wallet: null,
+            }
+        case types.RECOVER_WALLET_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                wallet: action.payload,
+            }
         default:
             return state;
     }
