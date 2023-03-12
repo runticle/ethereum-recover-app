@@ -16,7 +16,7 @@ interface TextProps {
 
 const LargeText: FunctionComponent<TextProps> = (props) => {
     return (
-        <TextView>
+        <TextView style={props.textStyle} >
             {props.children}
         </TextView>
     )
