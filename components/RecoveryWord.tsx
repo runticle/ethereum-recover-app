@@ -29,7 +29,7 @@ interface RecoveryWordProps {
 }
 
 const RecoveryWord: FunctionComponent<RecoveryWordProps> = (props) => {
-    const [, dispatch] = useMnemonic();
+    const { dispatch } = useMnemonic();
 
     function handleRemoveWord() {
       dispatch({ type: types.REMOVE_WORD, payload: props.index });

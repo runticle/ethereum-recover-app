@@ -20,7 +20,7 @@ export function useMnemonic() {
 function MnemonicProvider({children}: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(mnemonicReducer, initialState);
   
-  const mnemonicState = [state, dispatch]
+  const mnemonicState = { state, dispatch };
 
   return (
     <MnemonicContext.Provider value={mnemonicState}>

@@ -10,10 +10,7 @@ export type MnemonicState = {
 
 export type MnemonicAction = {
     type: string;
-    payload: string;
-} | {
-    type: string;
-    payload: number
+    payload: string | number;
 }
 
 function mnemonicReducer(state: MnemonicState, action: MnemonicAction) {

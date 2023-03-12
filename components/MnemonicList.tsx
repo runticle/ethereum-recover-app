@@ -16,9 +16,9 @@ interface MnemonicListProps {
 }
 
 const MnemonicList: FunctionComponent<MnemonicListProps> = () => {   
-  const [state] = useMnemonic();
+  const { state } = useMnemonic();
 
-  const {mnemonic} = state;
+  const { mnemonic } = state;
 
   return (  
       <MnemonicListView

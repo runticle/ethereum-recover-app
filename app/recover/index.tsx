@@ -22,7 +22,7 @@ const RecoverScreen: FunctionComponent = () => {
 
   const [currentInput, setCurrentInput ] = useState('')
 
-  const [state, dispatch] = useMnemonic()
+  const { state, dispatch } = useMnemonic()
 
   const { mnemonic } = state;
 
