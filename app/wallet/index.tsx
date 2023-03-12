@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react';
 
 import styled from 'styled-components/native';
 import { Container } from '../../components/Globals';
+import { Alert } from 'react-native';
 
 import { Stack } from 'expo-router';
 import { useWallet } from '../../context/WalletContext';
@@ -39,12 +40,16 @@ const WalletScreen: FunctionComponent = () => {
   const { wallet } = state;
 
   useEffect(() => {
+    if(state.error) {
+      Alert.alert('Something went wrong', state.error)
+    }
+
     if(wallet?.address) {
       getSecuredItem(wallet.address).then((value) => setPrivateKey(value))
       fetchWalletBalance(wallet.address)
     }
 
-  }, [wallet.address])
+  }, [wallet.address, state.error])
 
   if(state.loading) return <NormalText>Loading...</NormalText>
 

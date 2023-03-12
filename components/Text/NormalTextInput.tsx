@@ -13,7 +13,7 @@ const NormalTextInputView = styled.TextInput<CustomTextInputProps>`
 `
 
 interface CustomTextInputProps extends TextInputProps{
-    title: string
+    title: string;
 }
 
 const NormalTextInput: FunctionComponent<CustomTextInputProps> = (props) => {

@@ -1,4 +1,7 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+
+import { Alert } from 'react-native';
+import { TextInput } from 'react-native/types';
 
 import styled from 'styled-components/native';
 import { Container, MNEMONIC_LENGTH } from '../../components/Globals';
@@ -29,14 +32,14 @@ const RecoverScreen: FunctionComponent = () => {
     dispatch({ type: types.ADD_WORD, payload: value });
   }
 
-  function handleInput(value: string) {
+  function handleInput(value: string, submit: boolean = false) {
     const lastInput = value.charAt(value.length - 1)
 
     value = value.toLocaleLowerCase().trim()
     
-    // if user pressed Space and there is an actual string to add
-    // add word to array and reset textinput
-    if(lastInput === ' ' && value.trim().length) {
+    // User can either press the submit button to add a word
+    // or if they press space, we will also add the word.
+    if(submit || lastInput === ' ' && value.trim().length) {
       handleAddWord(value)
       setCurrentInput('')
     } else {
@@ -47,12 +50,15 @@ const RecoverScreen: FunctionComponent = () => {
   const inputComplete = mnemonic.length === MNEMONIC_LENGTH
 
   useEffect(()=> {
-    // TODO temp fix
+    if(state.error) {
+      Alert.alert('Something went wrong', state.error)
+    }
+
     // * Look out for the presence of a wallet in our reducer. If we find one, we will head to the wallet screen
     if(state.wallet?.address) {
       router.replace('/wallet')
     }
-  }, [state.wallet?.address])
+  }, [state.wallet?.address, state.error])
 
   if(state.loading) return <NormalText>Loading...</NormalText>
 
@@ -69,6 +75,10 @@ const RecoverScreen: FunctionComponent = () => {
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Enter word"
+          blurOnSubmit={false}
+          onSubmitEditing={(event) => {
+            handleInput(event.nativeEvent.text, true)
+          }}
           />
           : <SubmitMnemonic />
         }
