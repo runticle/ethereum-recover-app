@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import styled from 'styled-components/native';
 import { Container } from '../components/Globals';
@@ -11,7 +11,6 @@ import { useWallet } from '../context/WalletContext';
 
 const HomeView = styled(Container)`
     justify-content: space-between;
-    align-items: center;
 `;
 
 const HomeScreen: FunctionComponent = () => {

@@ -14,6 +14,7 @@ import types from '../../reducers/types';
 import { useWallet } from '../../context/WalletContext';
 import SubmitMnemonic from '../../components/Buttons/SubmitMnemonic';
 import NormalText from '../../components/Text/NormalText';
+import Loading from '../../components/Loading';
 
 const RecoverView = styled(Container)``;
 
@@ -64,8 +65,6 @@ const RecoverScreen: FunctionComponent = () => {
         return unsubscribe;
     }, [state.wallet?.address, state.error, navigation]);
 
-    if (state.loading) return <NormalText>Loading...</NormalText>;
-
     return (
         <RecoverView>
             <Stack.Screen options={{ title: 'Recovery' }} />
@@ -91,6 +90,7 @@ const RecoverScreen: FunctionComponent = () => {
             ) : (
                 <SubmitMnemonic />
             )}
+            <Loading show={state.loading} />
         </RecoverView>
     );
 };

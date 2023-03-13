@@ -36,7 +36,17 @@ const RecoveryWord: FunctionComponent<RecoveryWordProps> = (props) => {
     return (
         <RecoveryWordView>
             <DeleteView onPress={handleRemoveWord}>
-                <NormalText>X</NormalText>
+                <NormalText
+                    textStyle={{
+                        backgroundColor: Colours.white,
+                        borderBottomLeftRadius: 10,
+                        borderTopLeftRadius: 10,
+                        paddingLeft: 5,
+                        color: Colours.black,
+                    }}
+                >
+                    X
+                </NormalText>
             </DeleteView>
             <NormalText textStyle={{ paddingLeft: 5 }}>
                 {props.children}

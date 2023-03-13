@@ -10,10 +10,10 @@ import { getSecuredItem } from '../../utils/secureStoreUtils';
 import Revealer from '../../components/Revealer';
 import { bigNumInEth, getBalanceFromWallet } from '../../utils/ethersUtils';
 import types from '../../reducers/types';
-import NormalText from '../../components/Text/NormalText';
 import SecondaryButton from '../../components/Buttons/SecondaryButton';
 import { deleteItemAsync } from 'expo-secure-store';
 import { SECURE_STORAGE_KEY } from '../../components/Globals';
+import Loading from '../../components/Loading';
 
 const WalletView = styled(Container)``;
 
@@ -99,8 +99,6 @@ const WalletScreen: FunctionComponent = () => {
         }
     }, [wallet.address, state.error]);
 
-    if (state.loading) return <NormalText>Loading...</NormalText>;
-
     return (
         <WalletView>
             <Stack.Screen
@@ -112,6 +110,7 @@ const WalletScreen: FunctionComponent = () => {
             <SecondaryButton onPress={askLockWallet}>
                 Lock Wallet
             </SecondaryButton>
+            <Loading show={state.loading} />
         </WalletView>
     );
 };
