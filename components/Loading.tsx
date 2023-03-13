@@ -23,6 +23,8 @@ interface LoadingProps {
     show: boolean;
 }
 
+// ! spinner freezes
+
 const Loading: FunctionComponent<LoadingProps> = (props) => {
     if (!props.show) return null;
     return (
