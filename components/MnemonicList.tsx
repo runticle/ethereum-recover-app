@@ -11,27 +11,31 @@ import LargeText from './Text/LargeText';
 
 const MnemonicListView = styled.FlatList`
     margin-top: 10px;
-`
+`;
 
-interface MnemonicListProps {
-  
-}
+interface MnemonicListProps {}
 
-const MnemonicList: FunctionComponent<MnemonicListProps> = () => {   
-  const { state } = useWallet();
+const MnemonicList: FunctionComponent<MnemonicListProps> = () => {
+    const { state } = useWallet();
 
-  const { mnemonic } = state;
+    const { mnemonic } = state;
 
-  return (
-    <>
-      <LargeText>{`${MNEMONIC_LENGTH - state.mnemonic.length } word${MNEMONIC_LENGTH - state.mnemonic.length === 1 ? '' : 's'} left`}</LargeText>
-      <MnemonicListView
-        data={mnemonic}
-        renderItem={({ item, index }) => <RecoveryWord key={index} index={index}>{item}</RecoveryWord>}
-        numColumns={3}
-      />
-    </>
-  );
-}
+    return (
+        <>
+            <LargeText>{`${MNEMONIC_LENGTH - state.mnemonic.length} word${
+                MNEMONIC_LENGTH - state.mnemonic.length === 1 ? '' : 's'
+            } left`}</LargeText>
+            <MnemonicListView
+                data={mnemonic}
+                renderItem={({ item, index }) => (
+                    <RecoveryWord key={index} index={index}>
+                        {item}
+                    </RecoveryWord>
+                )}
+                numColumns={3}
+            />
+        </>
+    );
+};
 
 export default MnemonicList;

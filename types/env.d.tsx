@@ -3,4 +3,4 @@ declare module '@env' {
     export const ETHERSCAN_API_KEY: string;
     export const GANACHE_NETWORK: string;
     export const SECURE_STORAGE_KEY: string;
-  }
+}

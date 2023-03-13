@@ -1,11 +1,11 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 const Colours = {
     black: `#393D47`,
     white: '#DBE2E9',
     orange: '#F09030',
-    red: '#CC5608'
-}
+    red: '#CC5608',
+};
 
 const Container = styled.View`
     flex: 1;
@@ -13,12 +13,8 @@ const Container = styled.View`
     padding: 20px;
 
     padding-top: 50px;
-`
+`;
 
-const MNEMONIC_LENGTH = 12
+const MNEMONIC_LENGTH = 12;
 
-export {
-    Colours,
-    Container,
-    MNEMONIC_LENGTH
-}
+export { Colours, Container, MNEMONIC_LENGTH };

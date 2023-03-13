@@ -1,4 +1,4 @@
-import types from "./types";
+import types from './types';
 
 export const initialState = {
     mnemonic: [],
@@ -8,7 +8,7 @@ export const initialState = {
         address: null,
         balance: null,
     },
-}
+};
 
 export type WalletState = {
     mnemonic: string[];
@@ -18,29 +18,33 @@ export type WalletState = {
         address: string | null;
         balance: string | null;
     };
-}
+};
 
 export type WalletAction = {
     type: string;
     payload?: string | number;
-}
+};
 
-function walletReducer(state: WalletState = initialState, action: WalletAction) {
-    switch(action.type) {
+function walletReducer(
+    state: WalletState = initialState,
+    action: WalletAction
+) {
+    switch (action.type) {
         case types.ADD_WORD:
             return {
                 ...state,
-                mnemonic: [...state.mnemonic, action.payload]
-            }
+                mnemonic: [...state.mnemonic, action.payload],
+            };
         case types.REMOVE_WORD:
-            const tmp = [...state.mnemonic]
+            // eslint-disable-next-line no-case-declarations
+            const tmp = [...state.mnemonic];
 
-            tmp.splice(Number(action.payload), 1) // force number
+            tmp.splice(Number(action.payload), 1); // force number
 
-            return { 
+            return {
                 ...state,
-                mnemonic: tmp 
-            }
+                mnemonic: tmp,
+            };
 
         case types.RECOVER_WALLET_START:
             return {
@@ -52,7 +56,7 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                     address: null,
                     balance: null,
                 },
-            }
+            };
         case types.RECOVER_WALLET_ERROR:
             return {
                 ...state,
@@ -63,7 +67,7 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                     address: null,
                     balance: null,
                 },
-            }
+            };
         case types.RECOVER_WALLET_SUCCESS:
             return {
                 ...state,
@@ -72,8 +76,8 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                 wallet: {
                     ...state.wallet,
                     address: action.payload,
-                } 
-            }
+                },
+            };
 
         case types.FETCH_BALANCE_START:
             return {
@@ -84,7 +88,7 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                     ...state.wallet,
                     balance: null,
                 },
-            }
+            };
         case types.FETCH_BALANCE_ERROR:
             return {
                 ...state,
@@ -94,7 +98,7 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                     ...state.wallet,
                     balance: null,
                 },
-            }
+            };
         case types.FETCH_BALANCE_SUCCESS:
             return {
                 ...state,
@@ -103,8 +107,8 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
                 wallet: {
                     ...state.wallet,
                     balance: action.payload,
-                } 
-            }
+                },
+            };
 
         case types.RESET:
             return initialState;
@@ -113,4 +117,4 @@ function walletReducer(state: WalletState = initialState, action: WalletAction) 
     }
 }
 
-export default walletReducer
+export default walletReducer;
