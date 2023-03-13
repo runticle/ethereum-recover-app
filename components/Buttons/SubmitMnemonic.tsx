@@ -44,7 +44,6 @@ const SubmitMnemonic: FunctionComponent = (props) => {
                     payload: address,
                 });
             } catch (error) {
-                console.log('errrrkrkrr', error);
                 dispatch({
                     type: types.RECOVER_WALLET_ERROR,
                     payload: `Failed to recover wallet from provided recovery phrase. Please check your input and try again. Error: ${error.message}`,
