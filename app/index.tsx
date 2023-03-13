@@ -35,13 +35,11 @@ const HomeScreen: FunctionComponent = () => {
         buttonPath = '/recover';
         descriptiveText = [
             "Let's recover your ethereum wallet.",
-            "Have your mnemoic phrase ready. (What's this?)",
+            'Have your mnemoic phrase ready. This is yor 12 word recovery phrase. Never share this with anyone.',
             'Ensure you are in a secure location and no one is able to see your phone.',
             'Tap the button below to start.',
         ];
     }
-
-    useEffect(() => {}, []);
 
     return (
         <HomeView>
