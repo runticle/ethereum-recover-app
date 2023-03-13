@@ -1,10 +1,8 @@
-import React, { FunctionComponent, useReducer } from "react";
-import { GestureResponderEvent } from "react-native/types";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components/native";
 import { Colours } from "./Globals";
 import NormalText from "./Text/NormalText";
 
-import walletReducer, { initialState } from '../reducers/walletReducer';
 import types from '../reducers/types';
 import { useWallet } from "../context/WalletContext";
 

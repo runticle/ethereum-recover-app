@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { GestureResponderEvent, TouchableOpacity } from 'react-native/types';
+import { GestureResponderEvent } from 'react-native/types';
 import styled from "styled-components/native";
 import { Colours } from '../Globals';
 
