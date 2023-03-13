@@ -6,7 +6,7 @@ import { getWalletFromMnemonic } from '../../utils/ethersUtils';
 import { saveSecurely } from '../../utils/secureStoreUtils';
 import BaseButton from './BaseButton';
 
-import { SECURE_STORAGE_KEY } from '@env';
+import { SECURE_STORAGE_KEY } from '../Globals';
 
 const SubmitMnemonic: FunctionComponent = (props) => {
     const { state, dispatch } = useWallet();
@@ -44,6 +44,7 @@ const SubmitMnemonic: FunctionComponent = (props) => {
                     payload: address,
                 });
             } catch (error) {
+                console.log('errrrkrkrr', error);
                 dispatch({
                     type: types.RECOVER_WALLET_ERROR,
                     payload: `Failed to recover wallet from provided recovery phrase. Please check your input and try again. Error: ${error.message}`,

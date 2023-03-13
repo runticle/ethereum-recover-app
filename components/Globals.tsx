@@ -17,4 +17,6 @@ const Container = styled.View`
 
 const MNEMONIC_LENGTH = 12;
 
-export { Colours, Container, MNEMONIC_LENGTH };
+const SECURE_STORAGE_KEY = 'efiuatni4wh4wgiu4iub';
+
+export { Colours, Container, MNEMONIC_LENGTH, SECURE_STORAGE_KEY };
