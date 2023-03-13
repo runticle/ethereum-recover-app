@@ -1,7 +1,7 @@
 import types from "./types";
 
 export const initialState = {
-    mnemonic: ['example'],
+    mnemonic: [],
     loading: false,
     error: null,
     wallet: {
@@ -25,7 +25,7 @@ export type WalletAction = {
     payload?: string | number;
 }
 
-function walletReducer(state: WalletState, action: WalletAction) {
+function walletReducer(state: WalletState = initialState, action: WalletAction) {
     switch(action.type) {
         case types.ADD_WORD:
             return {
@@ -68,7 +68,7 @@ function walletReducer(state: WalletState, action: WalletAction) {
             return {
                 ...state,
                 loading: false,
-                error: false,
+                error: null,
                 wallet: {
                     ...state.wallet,
                     address: action.payload,
@@ -79,7 +79,7 @@ function walletReducer(state: WalletState, action: WalletAction) {
             return {
                 ...state,
                 loading: true,
-                error: false,
+                error: null,
                 wallet: {
                     ...state.wallet,
                     balance: null,
@@ -92,7 +92,6 @@ function walletReducer(state: WalletState, action: WalletAction) {
                 error: action.payload,
                 wallet: {
                     ...state.wallet,
-                    address: null,
                     balance: null,
                 },
             }
@@ -100,7 +99,7 @@ function walletReducer(state: WalletState, action: WalletAction) {
             return {
                 ...state,
                 loading: false,
-                error: false,
+                error: null,
                 wallet: {
                     ...state.wallet,
                     balance: action.payload,
